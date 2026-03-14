@@ -1,28 +1,183 @@
+@font-face {
+  font-family: 'outfit';
+  src: url('assets/fonts/Outfit.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
 
-.files {
+/* ==== Base styles ==== */
+:root {
+    font-family: outfit;
+    --bg: #FFFCF8;
+    --card-bg: #F6F8F7;
+    --accent: #D8FFED;
+    --accent-strong: #83E5C8;
+    --white: #FFFFFF;
+    --black: #000000;
+    --text-deemph: #878787;
+    --danger: #E7A2A2;
+    --neutral: #E7E7E7;
+
+    --h1-size: 2rem;
+    --h2-size: 1.5rem;
+    --h3-size: 1.25rem; 
+    --p-size: 1rem;
+
+    --pad-sm: 4px;
+    --pad-md: 8px;
+    --pad-lg: 24px;
+    --pad-xl: 56px;
+
+    --gap-sm: 4px;
+    --gap-md: 8px;
+    --gap-xl: 24px;
+
+    --border-md: 24px;
+    --border-lg: 48px;
+
+    /* https://smoothshadows.com/#djEsMSwzLDAuMDcsMTIsOCw4LCMwMzA3MTIsI2YzZjRmNiwjZmZmZmZmLDI%3D */
+    --soft-shadow: 1px 1px 1px rgba(3, 7, 18, 0.02), 4px 4px 5px rgba(3, 7, 18, 0.05), 6px 6px 10px rgba(3, 7, 18, 0.07);
+
+}
+
+body {
     display: flex;
     flex-direction: column;
+    padding: var(--pad-lg);
+    background-color: var(--bg);
+    gap: var(--gap-xl);
+}
+.title { 
+    width: 100%;
+    text-align: center;
+ }
+
+
+/* ==== Upload files section ==== */
+.section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-xl);
+    border-radius: var(--border-lg);
+    background-color: var(--card-bg);
+    box-shadow: var(--soft-shadow);
+    padding: var(--pad-xl);
+}
+.upload-button {
+    width: 100%;
+    box-sizing: border-box;
+
+    background-color: var(--accent);
+    border-radius: 48px;
+
+    box-shadow: var(--soft-shadow);
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    p {
+        margin: 0px;
+    }
+}
+.upload-file {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--gap-md);
+    padding: var(--pad-md) var(--pad-lg);
+    width: 100%;
+    &:hover { 
+        cursor: pointer; 
+    }
+}
+.upload-files-header {
+    display: flex;
     gap: 8px;
 }
-.file {
-    color: lightgrey;
-    background-color: black;
+
+/* display uploaded files */
+.files { 
+    display: flex; 
+    flex-direction: column; 
+    gap: var(--gap-md); 
+}
+
+.file-card {
+    display: grid;
+    grid-template-columns: 150px auto 1fr auto;
+    grid-template-areas: "filename" "sample" "tags" "delete";
+    grid-template-rows: 1fr;
+    grid-gap: 0px var(--gap-md);
+
+    padding: 16px 24px;
+    border-radius: 24px;
+    box-sizing: border-box;
+
+    background-color: #fff;
+    color: #000;
+}
+.file-name {
     display: flex;
+    gap: var(--gap-md);
+    align-items: center;
 }
-.file > p::after {
-    content: " - ";
-    white-space: pre;
+.file-sample {
+    grid-area: "sample";
+    justify-self: start;
+    align-self: center;
+    color: var(--text-deemph);
+}
+.file-tags {
+    display: flex;
+    justify-self: end;
+    gap: var(--gap-md);
+}
+.file-name img:hover, .file-delete:hover, .submit-button:hover {
+    cursor: pointer;
+}
+.tag {
+    background-color: var(--accent);
+    border-radius: var(--border-md);
+    padding: var(--pad-sm) var(--pad-md);
+}
+.submit-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: var(--pad-lg);
+}
+.submit-button {
+    all: unset;
+    width: fit-content;
+    padding: var(--pad-md) var(--pad-lg);
+    background-color: var(--accent-strong);
+    border-radius: var(--border-lg);
+    box-shadow: var(--soft-shadow);
 }
 
-.tags {
-    display: inline-flex;
-    gap: 4px;
-    color: white;
-    max-width: fit-content;
+/* Visualisations section */
+.text-deemph {
+    color: var(--text-deemph);
+}
+.col-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-md);
+}
+.row-group {
+    display: flex;
+    gap: var(--gap-md);
 }
 
-.tags p:not(:last-child)::after {
-    content: ",";
+h2, p {
+    margin: 0px;
+}
+
+/* radio button selection */
+.selection {
+    display: flex;
+    align-items: center;
 }
 
 .loader {
@@ -38,3 +193,7 @@
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
+/* === components === */
+
+/* Radio options */

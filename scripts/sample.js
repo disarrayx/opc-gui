@@ -1,0 +1,36 @@
+const csv_sample_test = {
+  fromFile: "CDS2-S.D00",
+  area: "central",
+  time: "day",
+  depth: "surface",
+  sample_num: "2",
+  // we have 24 bins total
+  // note the bin numbers always correspond to the same range so we dont actually need to store the ranges
+  //sample data from sheet31
+  bins: [
+    { bin: 1, counts: 202},
+    { bin: 2, counts: 6},
+    { bin: 3, counts: 0},
+    { bin: 4, counts: 2},
+    { bin: 5, counts: 13},
+    { bin: 6, counts: 35},
+    { bin: 7, counts: 27},
+    { bin: 8, counts: 24},
+    { bin: 9, counts: 20},
+    { bin: 10, counts: 10},
+    { bin: 11, counts: 10},
+    { bin: 12, counts: 15},
+    { bin: 13, counts: 7},
+    { bin: 14, counts: 14},
+    { bin: 15, counts: 8},
+    { bin: 16, counts: 5},
+    { bin: 17, counts: 6},
+    { bin: 18, counts: 7},
+    { bin: 19, counts: 0},
+    { bin: 20, counts: 1},
+    { bin: 21, counts: 2},
+    { bin: 22, counts: 4},
+    { bin: 23, counts: 0},
+    { bin: 24, counts: 0},
+  ],
+}

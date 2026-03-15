@@ -114,16 +114,34 @@ let test_obj = {
         sample_data_2
     ]
 }
-
+let test_obj2 = {
+    files: [
+        sample_data_2,
+        sample_data_1
+    ]
+}
 
 testAverage(test_obj);
+// same result in different input order
+testAverage(test_obj2);
+readBins(test_obj);
+// readBins(test_obj2);
 
 function testAverage(test_obj) {
-    const average = makeAllSampleAverageObj(test_obj);
+    let average = makeAllSampleAverageObj(test_obj);
     for (let i = 0; i < average.samples.length; i++) {
-        console.log(average.samples[i]);
+        //console.log(average.samples[i]);
         console.assert(average.samples[i].toString == sample_data_average.bins[i].toString, "they are not equal");
     }
     
     return;
+}
+
+function readBins(test_obj) {
+  for (let i = 0; i < test_obj.files.length; i++) {
+    for (let j = 0; j < test_obj.files[i].bins.length; j++) {
+      console.log(test_obj.files[i].bins[j]);
+    }
+  }
+  return;
 }

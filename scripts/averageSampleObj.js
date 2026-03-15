@@ -30,7 +30,8 @@ export function makeAllSampleAverageObj(test_obj) {
     let uniqueSamples = 1;
     for (let i = 0; i < test_obj.files.length; i++) {
         let tag_obj = makeTagObj(test_obj.files[i]);
-        let sample = {...test_obj.files[i]};
+        // let sample = {...test_obj.files[i]};
+        let sample = makeCopy(test_obj.files[i]);
 
         // check arr has matching replicates IF current sample is new
         if (!(checkedMap.has(tag_obj.fromFile))) {
@@ -102,4 +103,41 @@ function averageCounts(sample, numSamples) {
             sample.bins[i].counts = sample.bins[i].counts / numSamples;
         }
     }
+}
+
+function makeCopy(obj) {
+    let copy = {
+        fromFile: obj.fromFile,
+        area: obj.area,
+        time: obj.time,
+        depth: obj.depth,
+        sample_num: "0",
+        bins: [
+            { bin: 1, counts: obj.bins[1 - 1].counts},
+            { bin: 2, counts: obj.bins[2 - 1].counts},
+            { bin: 3, counts: obj.bins[3 - 1].counts},
+            { bin: 4, counts: obj.bins[4 - 1].counts},
+            { bin: 5, counts: obj.bins[5 - 1].counts},
+            { bin: 6, counts: obj.bins[6 - 1].counts},
+            { bin: 7, counts: obj.bins[7 - 1].counts},
+            { bin: 8, counts: obj.bins[8 - 1].counts},
+            { bin: 9, counts: obj.bins[9 - 1].counts},
+            { bin: 10, counts: obj.bins[10 - 1].counts},
+            { bin: 11, counts: obj.bins[11 - 1].counts},
+            { bin: 12, counts: obj.bins[12 - 1].counts},
+            { bin: 13, counts: obj.bins[13 - 1].counts},
+            { bin: 14, counts: obj.bins[14 - 1].counts},
+            { bin: 15, counts: obj.bins[15 - 1].counts},
+            { bin: 16, counts: obj.bins[16 - 1].counts},
+            { bin: 17, counts: obj.bins[17 - 1].counts},
+            { bin: 18, counts: obj.bins[18 - 1].counts},
+            { bin: 19, counts: obj.bins[19 - 1].counts},
+            { bin: 20, counts: obj.bins[20 - 1].counts},
+            { bin: 21, counts: obj.bins[21 - 1].counts},
+            { bin: 22, counts: obj.bins[22 - 1].counts},
+            { bin: 23, counts: obj.bins[23 - 1].counts},
+            { bin: 24, counts: obj.bins[24 - 1].counts},
+        ]
+    }
+    return copy;
 }

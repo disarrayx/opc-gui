@@ -5,6 +5,8 @@ import { makeBlankSample } from "./makeBlankSample";
 const uploadedData = {};
 let fileQueue = [];
 let currentFile = null;
+import { makeAllSampleAverageObj } from './averageSampleObj.js';
+import { renderChart } from "./chart.js";
 
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
@@ -12,6 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const overlay = document.querySelector('.overlay');
     const optionsForm = document.getElementById('optionsForm');
     const cancelBtn = document.querySelector('.cancel');
+    const processBtn = document.getElementById('submit-files');
     
     // File input already triggered by label's "for" attribute
     // Just handle the change event
@@ -22,7 +25,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Handle cancel button
     cancelBtn.addEventListener('click', handleCancel);
-    
+
+    processBtn.addEventListener('click', processData);
+
     // Handle escape key
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && overlay.classList.contains('active')) {
@@ -112,7 +117,7 @@ function handleFormSubmit(event) {
             
             // Hide popup
             document.querySelector('.overlay').classList.remove('active');
-            
+            console.log(uploadedData);
             // Process next file in queue
             processNextFile();
         },
@@ -312,6 +317,28 @@ function splitByWestCentral(averagedData) {
     res.central.area = "central";
 
     return res;
+function processData() {
+    const test_obj = { files: Object.values(uploadedData) };
+    const averaged = makeAllSampleAverageObj(test_obj);
+
+    console.log("Processed data:", averaged);
+
+    let chartData = [];
+
+    if (Array.isArray(averaged)) {
+        averaged.forEach(item => {
+            if (item && Array.isArray(item.samples)) {
+                chartData.push(...item.samples);
+            }
+        });
+    } else if (averaged && Array.isArray(averaged.samples)) {
+        chartData = averaged.samples;
+    }
+    chartData = chartData.filter(s => s && Array.isArray(s.bins));
+
+    console.log("Filtered chartData for chart:", chartData);
+
+    renderChart(chartData);
 }
 
 // Make functions available globally

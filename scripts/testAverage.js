@@ -1,6 +1,6 @@
 import { makeAllSampleAverageObj } from './averageSampleObj.js'
 
-// yoinked from chart.js
+// from chart.js
 const sample_data_1 = {
   fromFile: "CDS1-S.D00",
   area: "central",
@@ -174,7 +174,6 @@ const sample_data_4 = {
   ],
 }
 
-// console.log(sample_data_1);
 let test_obj = {
     files: [
         sample_data_1,
@@ -227,6 +226,7 @@ function testAverage(test_obj) {
     let average = makeAllSampleAverageObj(test_obj);
     for (let i = 0; i < average.samples.length; i++) {
         console.log(average.samples[i]);
+        // uncomment this to check via computer that values are as they should be
         // console.assert(average.samples[i].toString == sample_data_average.bins[i].toString, "they are not equal");
     }
     

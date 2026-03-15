@@ -318,6 +318,79 @@ function splitByWestCentral(averagedData) {
 
     return res;
 }
+
+
+function splitByDayNight(averagedData) {
+    let res = {
+        day: makeBlankSample(),
+        night: makeBlankSample(),
+    }
+    let numFirstTag = 0;
+    let numSecTag = 0;
+    for (sample in averagedData.samples) {
+        if (sample.time == "day") {
+            addCounts(res.day, sample);
+            numFirstTag += 1;
+        } else if (sample.time == "night") {
+            addCounts(res.night, sample);
+            numSecTag += 1;
+        }
+    }
+    averageCounts(res.day, numFirstTag);
+    averageCounts(res.night, numSecTag);
+    res.day.time = "day";
+    res.night.time = "night";
+    
+    return res;
+}
+
+function splitBySurfaceDeep(averagedData) {
+    let res = {
+        surface: makeBlankSample(),
+        deep: makeBlankSample(),
+    }
+    let numFirstTag = 0;
+    let numSecTag = 0;
+    for (sample in averagedData.samples) {
+        if (sample.depth == "surface") {
+            addCounts(res.surface, sample);
+            numFirstTag += 1;
+        } else if (sample.depth == "deep") {
+            addCounts(res.deep, sample);
+            numSecTag += 1;
+        }
+    }
+    averageCounts(res.surface, numFirstTag);
+    averageCounts(res.deep, numSecTag);
+    res.surface.depth = "surface";
+    res.deep.depth ="deep";
+
+    return res;
+}
+
+function splitByWestCentral(averagedData) {
+    let res = {
+        western: makeBlankSample(),
+        central: makeBlankSample(),
+    }
+    let numFirstTag = 0;
+    let numSecTag = 0;
+    for (sample in averagedData.samples) {
+        if (sample.area == "central") {
+            addCounts(res.central, sample);
+            numFirstTag += 1;
+        } else if (sample.area == "western") {
+            addCounts(res.western, sample);
+            numSecTag += 1;
+        }
+    }
+    averageCounts(res.western, numFirstTag);
+    averageCounts(res.central, numSecTag);
+    res.western.area = "western";
+    res.central.area = "central";
+
+    return res;
+}
 function processData() {
     const test_obj = { files: Object.values(uploadedData) };
     const averaged = makeAllSampleAverageObj(test_obj);

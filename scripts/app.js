@@ -1,4 +1,4 @@
-import { addCounts } from "./averageSampleObj";
+import { addCounts, averageCounts } from "./averageSampleObj";
 import { makeBlankSample } from "./makeBlankSample";
 
 // Global data storage
@@ -247,13 +247,19 @@ function splitByDayNight(averagedData) {
         day: makeBlankSample(),
         night: makeBlankSample(),
     }
+    let numFirstTag = 0;
+    let numSecTag = 0;
     for (sample in averagedData.samples) {
         if (sample.time == "day") {
             addCounts(res.day, sample);
+            numFirstTag += 1;
         } else if (sample.time == "night") {
             addCounts(res.night, sample);
+            numSecTag += 1;
         }
     }
+    averageCounts(res.day, numFirstTag);
+    averageCounts(res.night, numSecTag);
     res.day.time = "day";
     res.night.time = "night";
     
@@ -265,13 +271,19 @@ function splitBySurfaceDeep(averagedData) {
         surface: makeBlankSample(),
         deep: makeBlankSample(),
     }
+    let numFirstTag = 0;
+    let numSecTag = 0;
     for (sample in averagedData.samples) {
         if (sample.depth == "surface") {
             addCounts(res.surface, sample);
+            numFirstTag += 1;
         } else if (sample.depth == "deep") {
             addCounts(res.deep, sample);
+            numSecTag += 1;
         }
     }
+    averageCounts(res.surface, numFirstTag);
+    averageCounts(res.deep, numSecTag);
     res.surface.depth = "surface";
     res.deep.depth ="deep";
 
@@ -283,13 +295,19 @@ function splitByWestCentral(averagedData) {
         western: makeBlankSample(),
         central: makeBlankSample(),
     }
+    let numFirstTag = 0;
+    let numSecTag = 0;
     for (sample in averagedData.samples) {
         if (sample.area == "central") {
             addCounts(res.central, sample);
+            numFirstTag += 1;
         } else if (sample.area == "western") {
             addCounts(res.western, sample);
+            numSecTag += 1;
         }
     }
+    averageCounts(res.western, numFirstTag);
+    averageCounts(res.central, numSecTag);
     res.western.area = "western";
     res.central.area = "central";
 

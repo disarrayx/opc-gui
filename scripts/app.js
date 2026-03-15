@@ -317,6 +317,7 @@ function splitByWestCentral(averagedData) {
     res.central.area = "central";
 
     return res;
+}
 function processData() {
     const test_obj = { files: Object.values(uploadedData) };
     const averaged = makeAllSampleAverageObj(test_obj);

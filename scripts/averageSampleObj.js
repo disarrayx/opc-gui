@@ -1,7 +1,6 @@
-const test = require("node:test");
-
-let sample_data_1 = new Object();
-let sample_data_2 = new Object();
+// const test = require("node:test");
+import sample_data_1 from './testData.js';
+import sample_data_2 from './testData.js';
 
 let test_obj = {
     files: [
@@ -10,19 +9,25 @@ let test_obj = {
     ]
 }
 
+// function testAve() {
+//     let average = makeAllSampleAverageObj(test_obj);
+//     console.log(average);
+// }
+
 // O(bad) 
 /**
  * 
  * @param {*} test_obj | an object containing an array of samples 
  * @returns allSampleAverages | an object containing an array of the average counts for samples. 
+ *          allSampleAverages = { samples: [ {}, {}, {} ] }
  */
-function makeAllSampleAverageObj(test_obj) {
+export function makeAllSampleAverageObj(test_obj) {
     const checkedMap = new Map();
     let allSampleAverages = {
         samples: []
     }
 
-    let uniqueSamples = 0;
+    // let uniqueSamples = 0;
     for (let i = 0; i < test_obj.files.length; i++) {
         let tag_obj = makeTagObj(test_obj.files[i]);
         let sample = {...test_obj.files[i]};
@@ -33,12 +38,14 @@ function makeAllSampleAverageObj(test_obj) {
                 break;
             }
             // check through rest of array for replicates
-            let dupes = 0;
+            // always 1 dupe (original)
+            let dupes = 1;
             for (let j = i + 1; j < test_obj.files.length; j++) {
                 let tag_obj_2 = makeTagObj(test_obj.files[j]);
 
                 if (isReplicate(tag_obj, tag_obj_2)) {
-                    dupes == dupes + 1; 
+                    dupes = dupes + 1; 
+                    
                     // add counts to the final sample object
                     addCounts(sample, test_obj.files[j]);
 
@@ -48,7 +55,7 @@ function makeAllSampleAverageObj(test_obj) {
             }
             // average the total counts
             averageCounts(sample, dupes);
-            uniqueSamples == uniqueSamples + 1;
+            // uniqueSamples == uniqueSamples + 1;
 
             // add this averagedSample to the container of allSampleAverages
             allSampleAverages.samples.push(sample);
@@ -88,7 +95,11 @@ function addCounts(sample_1, sample_2) {
 }
 
 function averageCounts(sample, numSamples) {
+    console.log(numSamples);
     for (let i = 0; i < 24; i++) {
-        sample.bins[i].counts = sample.bin[i].counts / numSamples;
+        if (sample.bins[i].counts !== 0) {
+            sample.bins[i].counts = sample.bins[i].counts / numSamples;
+        }
+        
     }
 }

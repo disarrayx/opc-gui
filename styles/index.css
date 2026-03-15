@@ -124,10 +124,6 @@
     gap: var(--gap-md);
     align-items: center;
 }
-.file-name p:hover {
-    cursor: pointer;
-    text-decoration: underline;
-}
 .file-sample {
     grid-area: "sample";
     justify-self: start;
@@ -182,7 +178,7 @@ h1, h2, p {
 }
 
 /* popups */
-.overlay, .overlay-edit {
+.overlay {
     display: none;
     position: absolute;
     width: 100%;
@@ -191,18 +187,8 @@ h1, h2, p {
     z-index: 2;
     top: 0;
     left: 0;
-    
     place-items: center;
 }
-
-.overlay.active, .overlay-edit.active {
-    display: grid;
-}
-
-.overlay-edit {
-    z-index: 3;
-}
-
 .popup {
     background-color: var(--card-bg);
     width: 50%;
@@ -295,4 +281,9 @@ h1, h2, p {
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+
+.active {
+    display: grid !important;
 }

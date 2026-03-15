@@ -257,6 +257,36 @@ function splitByDayNight(averagedData) {
     return res;
 }
 
+function splitBySurfaceDeep(averagedData) {
+    let res = {
+        surface: makeBlankSample(averagedData),
+        deep: makeBlankSample(averagedData),
+    }
+    for (sample in averagedData) {
+        if (sample.depth == "surface") {
+            addCounts(res.surface, sample);
+        } else if (sample.depth == "deep") {
+            addCounts(res.deep, sample);
+        }
+    }
+    return res;
+}
+
+function splitByWestCentral(averagedData) {
+    let res = {
+        western: makeBlankSample(averagedData),
+        central: makeBlankSample(averagedData),
+    }
+    for (sample in averagedData) {
+        if (sample.area == "central") {
+            addCounts(res.central, sample);
+        } else if (sample.area == "western") {
+            addCounts(res.western, sample);
+        }
+    }
+    return res;
+}
+
 // Make functions available globally
 window.deleteFile = deleteFile;
 window.uploadedData = uploadedData;

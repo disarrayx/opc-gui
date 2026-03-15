@@ -95,11 +95,10 @@ function addCounts(sample_1, sample_2) {
 }
 
 function averageCounts(sample, numSamples) {
-    console.log(numSamples);
+    // console.log(numSamples);
     for (let i = 0; i < 24; i++) {
         if (sample.bins[i].counts !== 0) {
             sample.bins[i].counts = sample.bins[i].counts / numSamples;
         }
-        
     }
 }

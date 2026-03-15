@@ -2,6 +2,7 @@
 const uploadedData = {};
 let fileQueue = [];
 let currentFile = null;
+import {makeAllSampleAverageObj} from './averageSampleObj.js';
 
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
@@ -9,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const overlay = document.querySelector('.overlay');
     const optionsForm = document.getElementById('optionsForm');
     const cancelBtn = document.querySelector('.cancel');
+    const processBtn = document.getElementById('submit-files');
     
     // File input already triggered by label's "for" attribute
     // Just handle the change event
@@ -19,7 +21,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Handle cancel button
     cancelBtn.addEventListener('click', handleCancel);
-    
+
+    processBtn.addEventListener('click', processData);
+
     // Handle escape key
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && overlay.classList.contains('active')) {
@@ -109,7 +113,7 @@ function handleFormSubmit(event) {
             
             // Hide popup
             document.querySelector('.overlay').classList.remove('active');
-            
+            console.log(uploadedData);
             // Process next file in queue
             processNextFile();
         },
@@ -236,6 +240,17 @@ function deleteFile(fileId) {
 function updateFileCounter() {
     const count = Object.keys(uploadedData).length;
     document.getElementById('uploaded-files-count').textContent = count;
+}
+
+function processData() {
+    const test_obj = {
+        files: Object.values(uploadedData)
+    };
+
+    const averaged = makeAllSampleAverageObj(test_obj);
+    // do stuff pass it to shelleys average function
+    console.log(averaged);
+
 }
 
 // Make functions available globally

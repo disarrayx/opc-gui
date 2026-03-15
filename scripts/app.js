@@ -2,7 +2,8 @@
 const uploadedData = {};
 let fileQueue = [];
 let currentFile = null;
-import {makeAllSampleAverageObj} from './averageSampleObj.js';
+import { makeAllSampleAverageObj } from './averageSampleObj.js';
+import { renderChart } from "./chart.js";
 
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
@@ -243,14 +244,27 @@ function updateFileCounter() {
 }
 
 function processData() {
-    const test_obj = {
-        files: Object.values(uploadedData)
-    };
-
+    const test_obj = { files: Object.values(uploadedData) };
     const averaged = makeAllSampleAverageObj(test_obj);
-    // do stuff pass it to shelleys average function
-    console.log(averaged);
 
+    console.log("Processed data:", averaged);
+
+    let chartData = [];
+
+    if (Array.isArray(averaged)) {
+        averaged.forEach(item => {
+            if (item && Array.isArray(item.samples)) {
+                chartData.push(...item.samples);
+            }
+        });
+    } else if (averaged && Array.isArray(averaged.samples)) {
+        chartData = averaged.samples;
+    }
+    chartData = chartData.filter(s => s && Array.isArray(s.bins));
+
+    console.log("Filtered chartData for chart:", chartData);
+
+    renderChart(chartData);
 }
 
 // Make functions available globally

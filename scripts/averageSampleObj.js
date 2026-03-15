@@ -1,20 +1,4 @@
-// const test = require("node:test");
-// import sample_data_1 from './testData.js';
-// import sample_data_2 from './testData.js';
 
-// let test_obj = {
-//     files: [
-//         sample_data_1,
-//         sample_data_2
-//     ]
-// }
-
-// function testAve() {
-//     let average = makeAllSampleAverageObj(test_obj);
-//     console.log(average);
-// }
-
-// O(bad) 
 /**
  * 
  * @param {*} test_obj | an object containing an array of samples 
@@ -30,16 +14,10 @@ export function makeAllSampleAverageObj(test_obj) {
     let uniqueSamples = 0;
     for (let i = 0; i < test_obj.files.length; i++) {
         let tag_obj = makeTagObj(test_obj.files[i]);
-        // let sample = {...test_obj.files[i]};
         let sample = makeCopy(test_obj.files[i]);
-        // console.log(sample.fromFile);
 
         // check arr has matching replicates IF current sample is new
         if (!(checkedMap.has(tag_obj.fromFile))) {
-            // if (i == (test_obj.files.length - 1)) {
-            //     break;
-            // }
-            // check through rest of array for replicates
             // always 1 dupe (original)
             let dupes = 1;
             for (let j = i + 1; j < test_obj.files.length; j++) {
@@ -98,7 +76,6 @@ function addCounts(sample_1, sample_2) {
 }
 
 function averageCounts(sample, numSamples) {
-    // console.log(numSamples);
     for (let i = 0; i < 24; i++) {
         if (sample.bins[i].counts !== 0) {
             sample.bins[i].counts = sample.bins[i].counts / numSamples;

@@ -30,6 +30,7 @@
 
     --gap-sm: 4px;
     --gap-md: 8px;
+    --gap-lg: 16px;
     --gap-xl: 24px;
 
     --border-md: 24px;
@@ -40,7 +41,8 @@
 
 }
 
-body {
+.main {
+    position: relative;
     display: flex;
     flex-direction: column;
     padding: var(--pad-lg);
@@ -167,13 +169,108 @@ body {
 }
 .row-group {
     display: flex;
+    align-items: center;
     gap: var(--gap-md);
 }
 
-h2, p {
+h1, h2, p {
     margin: 0px;
 }
 
+<<<<<<< HEAD
+/* popups */
+.overlay {
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.8);
+    z-index: 2;
+    top: 0;
+    left: 0;
+    place-items: center;
+}
+.popup {
+    background-color: var(--card-bg);
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--gap-xl);
+    padding: var(--pad-lg);
+    border-radius: var(--border-md);
+}
+.popup-select {
+    display: flex;
+    flex-direction: column;
+
+}
+.radio-option {
+    border-radius: var(--border-lg);
+    flex: 1;
+}
+/* hide the radio button circle */
+.radio-option input {
+    display: none;
+}
+.radio-option label {
+    display: block;
+    width: 100%;
+    cursor: pointer;
+    text-align: center; 
+    padding: var(--pad-sm) var(--pad-md); 
+    border-radius: var(--border-md);
+    box-sizing: border-box;
+}
+/* highlight on click */
+.radio-option label:has(input[type="radio"]:checked) {
+    background-color: var(--accent-strong);
+    /* border-radius: var(--border-md);
+    padding: var(--pad-sm) var(--pad-md); */
+}
+
+/* options div */
+.options-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-md);
+}
+/* options group inner */
+.options {
+    padding: var(--pad-md);
+    max-width: 100%;
+    box-shadow: var(--soft-shadow);
+    background-color: var(--white);
+    border-radius: var(--border-lg);
+    display: flex;
+    justify-content: space-between;
+    gap: var(--gap-md);
+    flex-grow: 1;
+}
+
+.popup-actions {
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    gap: var(--gap-md);
+}
+
+.submit, .cancel {
+    all: unset;
+    padding: var(--pad-md) var(--pad-lg);
+    background-color: var(--accent);
+    border-radius: 48px;
+    box-shadow: var(--soft-shadow);
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.cancel {
+    background-color: var(--neutral);
+}
+=======
+>>>>>>> main
 
 .loader {
   border: 8px solid #e0e0e0;
@@ -189,6 +286,7 @@ h2, p {
   100% { transform: rotate(360deg); }
 }
 
-/* === components === */
 
-/* Radio options */
+.active {
+    display: grid !important;
+}

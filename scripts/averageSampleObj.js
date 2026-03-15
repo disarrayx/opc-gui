@@ -27,7 +27,7 @@ export function makeAllSampleAverageObj(test_obj) {
         samples: []
     }
 
-    // let uniqueSamples = 0;
+    let uniqueSamples = 1;
     for (let i = 0; i < test_obj.files.length; i++) {
         let tag_obj = makeTagObj(test_obj.files[i]);
         let sample = {...test_obj.files[i]};
@@ -55,7 +55,8 @@ export function makeAllSampleAverageObj(test_obj) {
             }
             // average the total counts
             averageCounts(sample, dupes);
-            // uniqueSamples == uniqueSamples + 1;
+            uniqueSamples == uniqueSamples + 1;
+            sample.sample_num = uniqueSamples;
 
             // add this averagedSample to the container of allSampleAverages
             allSampleAverages.samples.push(sample);

@@ -1,3 +1,6 @@
+import { addCounts } from "./averageSampleObj";
+import { makeBlankSample } from "./makeBlankSample";
+
 // Global data storage
 const uploadedData = {};
 let fileQueue = [];
@@ -236,6 +239,22 @@ function deleteFile(fileId) {
 function updateFileCounter() {
     const count = Object.keys(uploadedData).length;
     document.getElementById('uploaded-files-count').textContent = count;
+}
+
+
+function splitByDayNight(averagedData) {
+    let res = {
+        day: makeBlankSample(averagedData),
+        night: makeBlankSample(averagedData),
+    }
+    for (sample in averagedData) {
+        if (sample.time == "day") {
+            addCounts(res.day, sample);
+        } else if (sample.time == "night") {
+            addCounts(res.night, sample);
+        }
+    }
+    return res;
 }
 
 // Make functions available globally

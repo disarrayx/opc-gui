@@ -69,7 +69,7 @@ function isReplicate(tag_1, tag_2) {
     return false;
 }
 
-function addCounts(sample_1, sample_2) {
+export function addCounts(sample_1, sample_2) {
     for (let i = 0; i < 24; i++) {
         sample_1.bins[i].counts += sample_2.bins[i].counts;
     }

@@ -1,10 +1,10 @@
-export function makeBlankSample(obj) {
+export function makeBlankSample() {
     let copy = {
-        fromFile: obj.fromFile,
-        area: obj.area,
-        time: obj.time,
-        depth: obj.depth,
-        sample_num: obj.sample_num,
+        fromFile: "",
+        area: "",
+        time: "",
+        depth: "",
+        sample_num: "",
         bins: [
             { bin: 1, counts: 0 },
             { bin: 2, counts: 0 },

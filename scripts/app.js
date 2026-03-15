@@ -241,49 +241,58 @@ function updateFileCounter() {
     document.getElementById('uploaded-files-count').textContent = count;
 }
 
-
+// @param allSampleAverageObj { samples: [ {}, {}, {} ] }
 function splitByDayNight(averagedData) {
     let res = {
-        day: makeBlankSample(averagedData),
-        night: makeBlankSample(averagedData),
+        day: makeBlankSample(),
+        night: makeBlankSample(),
     }
-    for (sample in averagedData) {
+    for (sample in averagedData.samples) {
         if (sample.time == "day") {
             addCounts(res.day, sample);
         } else if (sample.time == "night") {
             addCounts(res.night, sample);
         }
     }
+    res.day.time = "day";
+    res.night.time = "night";
+    
     return res;
 }
 
 function splitBySurfaceDeep(averagedData) {
     let res = {
-        surface: makeBlankSample(averagedData),
-        deep: makeBlankSample(averagedData),
+        surface: makeBlankSample(),
+        deep: makeBlankSample(),
     }
-    for (sample in averagedData) {
+    for (sample in averagedData.samples) {
         if (sample.depth == "surface") {
             addCounts(res.surface, sample);
         } else if (sample.depth == "deep") {
             addCounts(res.deep, sample);
         }
     }
+    res.surface.depth = "surface";
+    res.deep.depth ="deep";
+
     return res;
 }
 
 function splitByWestCentral(averagedData) {
     let res = {
-        western: makeBlankSample(averagedData),
-        central: makeBlankSample(averagedData),
+        western: makeBlankSample(),
+        central: makeBlankSample(),
     }
-    for (sample in averagedData) {
+    for (sample in averagedData.samples) {
         if (sample.area == "central") {
             addCounts(res.central, sample);
         } else if (sample.area == "western") {
             addCounts(res.western, sample);
         }
     }
+    res.western.area = "western";
+    res.central.area = "central";
+
     return res;
 }
 

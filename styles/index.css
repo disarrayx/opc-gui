@@ -47,7 +47,7 @@
     flex-direction: column;
     padding: var(--pad-lg);
     background-color: var(--bg);
-    gap: var(--gap-xl);
+    gap: var(--gap-xl)
 }
 .title { 
     width: 100%;
@@ -152,7 +152,7 @@
 .submit-button {
     all: unset;
     width: fit-content;
-    padding: var(--pad-md) var(--pad-lg);
+    padding: var(--pad-md);
     background-color: var(--accent-strong);
     border-radius: var(--border-lg);
     box-shadow: var(--soft-shadow);
@@ -177,6 +177,7 @@ h1, h2, p {
     margin: 0px;
 }
 
+<<<<<<< HEAD
 /* popups */
 .overlay {
     display: none;
@@ -268,6 +269,8 @@ h1, h2, p {
 .cancel {
     background-color: var(--neutral);
 }
+=======
+>>>>>>> main
 
 .loader {
   border: 8px solid #e0e0e0;
